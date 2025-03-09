@@ -7,6 +7,15 @@ from tqdm import tqdm
 import argparse
 import numpy as np
 
+# Define cache directories
+cache_dir = "/scratch/saketh.vemula/hf_cache"
+# Set environment variables
+os.environ["HF_HOME"] = cache_dir
+os.environ["TRANSFORMERS_CACHE"] = os.path.join(cache_dir, "transformers")
+os.environ["HF_DATASETS_CACHE"] = os.path.join(cache_dir, "datasets")
+os.environ["HUGGINGFACE_HUB_CACHE"] = os.path.join(cache_dir, "hub")
+os.environ["HF_TOKEN"] = "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"
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Run inference on Llama-2-chat-7b with quantization")
     parser.add_argument("--precision", type=str, choices=["4bit", "8bit"], default="4bit", 
@@ -38,13 +47,26 @@ def load_model_and_tokenizer(precision="4bit"):
             load_in_8bit=True
         )
     
-    # Load tokenizer and model
-    tokenizer = AutoTokenizer.from_pretrained(model_id)
+    # Load tokenizer and model with explicit cache directory
+    cache_dir = os.environ["TRANSFORMERS_CACHE"]
+    
+    # Ensure cache directory exists
+    os.makedirs(cache_dir, exist_ok=True)
+    
+    tokenizer = AutoTokenizer.from_pretrained(
+        model_id,
+        cache_dir=cache_dir,
+        token=os.environ["HF_TOKEN"]
+    )
+    
     model = AutoModelForCausalLM.from_pretrained(
         model_id,
         quantization_config=quantization_config,
         device_map="auto",
-        torch_dtype=torch.float16
+        torch_dtype=torch.float16,
+        cache_dir=cache_dir,
+        token=os.environ["HF_TOKEN"],
+        offload_folder=os.path.join(cache_dir, "offload")  # Add offload folder for large models
     )
     
     return model, tokenizer
