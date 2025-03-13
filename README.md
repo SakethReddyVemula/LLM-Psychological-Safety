@@ -1,7 +1,7 @@
 # LLM-Psychological-Safety
 Course Project Responsible &amp; Safe AI
 
-## Project Eval - 2 (5 Points)
+## Project Eval - 2
 
 Plan:
 
@@ -9,7 +9,7 @@ Plan:
 2. Collecting datasets/prompts which can trigger harmful content.
 3. Literature Review on Preprocessing and Postprocessing agents.
 
-Deadline: 13th March, 2025
+Date: 13th March, 2025
 
 ### Tests for Evaluating Psychology of LLMs (PsychSafety Paper)
 
