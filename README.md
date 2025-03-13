@@ -17,9 +17,23 @@ For more details, refer to the [Assessing-LLM-PsychSafety](https://iiithydresear
 
 1. Personality Tests:
 - Short Dark Triad (SD-3): Dark Personality pattern detection
+    - Machiavallianism (manipulative attitude)
+    - Narcissism (excessive self-love)
+    - Psychopathy (lack of empathy)
 - Big Five Inventory (BFI): More comprehensive evaluation
+    - Extraversion (emotional expressiveness)
+    - Agreeableness (trust and kindness)
+    - Conscientiousness (thoughtfulness)
+    - Neuroticism (emotional instability)
+    - Openness (openness to experience)
 2. Well-being Tests:
 - Flourish Scale (FS)
 - Satisfaction With Life Scale (SWLS)
 3. Supplementary Tests:
 - HEXACO-PI-R test: for general personality tests
+    - Extraversion
+    - Agreeableness↑
+    - Conscientiousness
+    - Emotionality↓
+    - Openness
+    - Honesty-Humility↑
